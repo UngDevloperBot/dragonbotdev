@@ -1,0 +1,19 @@
+const Discord = require("discord.js");
+const YTDL = require("ytdl-core");
+ 
+var servers = {};
+module.exports.run = (bot, message, args) => {
+    //skip
+    var server = servers[message.guild.id];
+    if (server.dispatcher) server.dispatcher.end();
+
+    const voiceChannel = message.member.voiceChannel;
+
+        const queue = bot.queue.get(message.guild.id);
+
+
+        if(!message.member.voiceChannel) return message.channel.send(`**You must be in a voice channel to use this command.**`);
+		//if(!serverQueue) return message.channel.send(`**I cannot skip because nothing is playing.**`)
+		queue.connection.dispatcher.end(`Skip Command Used`);
+
+}
